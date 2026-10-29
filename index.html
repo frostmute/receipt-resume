@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jonathan J. Wagner — Résumé, printed on demand</title>
+<meta name="description" content="Jonathan James Wagner — creative designer + technologist, open-source developer and AI data analyst in San Antonio, TX. A résumé that prints itself out of a thermal receipt printer.">
+<meta name="author" content="Jonathan James Wagner">
+<meta name="theme-color" content="#11100f">
+<link rel="canonical" href="https://frostmute.sites.tab.bot/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Jonathan J. Wagner — Résumé, printed on demand">
+<meta property="og:description" content="Creative designer + technologist. Open-source dev, AI data analyst. Tear off a receipt.">
+<meta property="og:url" content="https://frostmute.sites.tab.bot/">
+<meta property="og:image" content="https://frostmute.sites.tab.bot/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A thermal receipt printing Jonathan J. Wagner's résumé">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://frostmute.sites.tab.bot/og.png">
+<link rel="preload" href="fonts/DepartureMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/plex.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="resume.html">Skip to the plain-text résumé</a>
+<div class="room" aria-hidden="true"><div class="spot"></div><div class="grainbg"></div></div>
+<div class="ghost" aria-hidden="true"><span id="ghostNo">01</span></div>
+
+<header class="rail rail-l">
+  <p class="mark">J. WAGNER</p>
+  <p class="rail-copy">Creative designer + technologist.<br>Open-source dev · AI data analyst.<br>San Antonio, TX.</p>
+  <ul class="rail-links">
+    <li><a href="resume.pdf" download="Jonathan-Wagner-Resume.pdf">Résumé PDF</a></li>
+    <li><a href="mailto:jonathanjameswagner@proton.me">Email</a></li>
+    <li><a href="https://github.com/frostmute" target="_blank" rel="noopener">GitHub</a></li>
+    <li><a href="https://www.linkedin.com/in/jonathanjwagner" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="https://jonathanjwagner.netlify.app" target="_blank" rel="noopener">Portfolio</a></li>
+  </ul>
+</header>
+
+<nav class="rail rail-r" aria-label="Receipts on this roll">
+  <p class="rail-h">ON THIS ROLL</p>
+  <ol id="index"></ol>
+</nav>
+
+<footer class="rail rail-b">
+  <p><span>PAPER</span> <b id="mUsed">0.00</b> M</p>
+  <p><span>TORN</span> <b id="mTorn">0</b></p>
+  <p><span>LINES</span> <b id="mLines">0</b></p>
+</footer>
+
+<main id="main">
+  <h1 class="sr">Jonathan James Wagner — creative designer and technologist. His résumé prints as a roll of receipts: read each one, then tear it off to print the next, or print the whole résumé at once.</h1>
+  <div class="printer" id="printer">
+    <div class="p-top"></div>
+    <div class="p-face">
+      <div class="lcd" aria-live="polite"><span id="lcdA">WARMING UP</span><span id="lcdB">80.00M</span></div>
+      <div class="brand"><b>WAGNER</b><i>JW&#8209;80 · THERMAL</i></div>
+      <div class="ctrls">
+        <span class="led" id="led"></span>
+        <button class="snd" id="snd" type="button" aria-pressed="false" aria-label="Sound">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8h3l4-3.5v11L6 12H3z" fill="currentColor"/><path class="w" d="M13 7.2c1.2 1.6 1.2 4 0 5.6M15.4 5c2.4 2.9 2.4 7.1 0 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path class="x" d="M13 7.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <button class="feed" id="feed" type="button" aria-label="Feed: skip printing, or tear off and print the next receipt"><span>FEED</span></button>
+      </div>
+    </div>
+    <div class="p-slot"><div class="cutter"></div></div>
+  </div>
+  <div class="stage" id="stage"></div>
+  <noscript><p class="nojs">This résumé prints with JavaScript. <a href="resume.html">Read the plain version</a> or <a href="resume.pdf">download the PDF</a>.</p></noscript>
+</main>
+
+<button class="mode" id="mode" type="button" aria-pressed="false"><span class="m-on">READ IT ALL <b>&darr;</b></span><span class="m-off">BACK TO THE PRINTER</span></button>
+<div class="hint" id="hint" aria-hidden="true"><span class="arr">&larr;</span> <span id="hintTxt">pull the paper sideways to tear</span> <span class="arr">&rarr;</span></div>
+
+<!-- ============ RECEIPTS ============ -->
+<template id="r-arrival">
+  <p class="l c xl name">JONATHAN<br>J. WAGNER</p>
+  <p class="l c">CREATIVE DESIGNER + TECHNOLOGIST</p>
+  <p class="l c">OPEN-SOURCE DEV · AI DATA ANALYST</p>
+  <p class="l c dim">SAN ANTONIO, TX · EST. 20+ YRS AGO</p>
+  <p class="l sp"></p>
+  <p class="l r"><span>DATE <i data-f="date"></i></span><b>TIME <i data-f="time"></i></b></p>
+  <p class="l r"><span>CASHIER: JONATHAN</span><b>ORDER NO. <i data-f="order"></i></b></p>
+  <p class="l r"><span>VISIT</span><b data-f="visit"></b></p>
+  <p class="l dbl" aria-hidden="true"></p>
+  <p class="l r th"><span>QTY ITEM</span><b>AMT</b></p>
+  <p class="l hr" aria-hidden="true"></p>
+  <p class="l r"><span>1 CREATIVE DESIGNER</span><b>20+ YRS</b></p>
+  <p class="l r"><span>1 OPEN-SOURCE DEVELOPER</span><b>SINCE 2022</b></p>
+  <p class="l r"><span>1 AI DATA ANALYST</span><b>SINCE 2024</b></p>
+  <p class="l r"><span>1 AAS, AI SOFTWARE DEV</span><b>IN PROG.</b></p>
+  <p class="l hr" aria-hidden="true"></p>
+  <p class="l r big"><span>TOTAL</span><b>DESIGN+CODE</b></p>
+  <p class="l dbl" aria-hidden="true"></p>
+  <p class="l c dim">SUMMARY</p>
+  <p class="l nc para">Dual-specialized Creative Designer and Technology Expert with 20+ years of experience delivering visual, technical, and AI-driven solutions. Skilled in AI training, data annotation, model evaluation, open-source development, IT support, and digital production. Produced bespoke artwork used by Google Data Centers, Cisco, The Ellen Show, the San Antonio Spurs, Joint Base San Antonio, and U.S. Air Force leadership teams (via employer). Currently enrolled full-time in an AAS in Artificial Intelligence Software Development.</p>
+  <p class="l sp"></p>
+  <p class="l inv c">HOW TO READ THIS RESUME</p>
+  <p class="l sp"></p>
+  <p class="l">01  READ DOWN.</p>
+  <p class="l">02  PULL THE PAPER SIDEWAYS, OR HIT FEED.</p>
+  <p class="l">03  IT TEARS. THE NEXT RECEIPT PRINTS.</p>
+  <p class="l sp"></p>
+  <div class="l btns onlyroll"><button type="button" class="pbtn" data-act="all">PRINT THE WHOLE RESUME NOW</button><a class="pbtn ghostbtn" href="resume.pdf" download="Jonathan-Wagner-Resume.pdf">DOWNLOAD PDF</a></div>
+  <p class="l c dim tiny onlyroll">IN A HURRY? EVERYTHING, ONE LONG ROLL.</p>
+  <p class="l sp"></p>
+  <div class="l bar" data-code="0001"></div>
+  <p class="l c tiny" data-f="code"></p>
+  <p class="l sp"></p>
+  <p class="l c onlyroll">&lt;&lt;&lt;  PULL SIDEWAYS TO TEAR  &gt;&gt;&gt;</p>
+  <p class="l sp"></p>
+</template>
+
+<template id="r-experience">
+  <p class="l c big">EXPERIENCE</p>
+  <p class="l c dim">ITEMIZED · 5 POSITIONS · NO. <i data-f="no"></i></p>
+  <p class="l dbl" aria-hidden="true"></p>
+  <p class="l it th"><span class="q">QTY</span><span class="d">ITEM (YEARS × ROLE)</span><b>DATES</b></p>
+  <p class="l hr" aria-hidden="true"></p>
+  <p class="l it"><span class="q" data-yrs="2024-now"></span><span class="d">AI DATA ANALYST &amp; ANNOTATOR</span><b>2024–NOW</b></p>
+  <p class="l it co"><span class="q"></span><span class="d">@ DATAANNOTATION.TECH</span><b></b></p>
+  <p class="l sub nc">Train and refine AI/ML systems through high-accuracy data annotation, labeling, and quality review</p>
+  <p class="l sub nc">Configure annotation environments, apply new tools and techniques, and maintain detailed documentation</p>
+  <p class="l sub nc">Collaborate with engineers to improve model performance, dataset consistency, and workflow efficiency</p>
+  <p class="l sub nc">Identify data issues, escalate blockers, and ensure timely delivery of project milestones</p>
+  <p class="l hr" aria-hidden="true"></p>
+  <p class="l it"><span class="q" data-yrs="2022-now"></span><span class="d">INDEPENDENT OPEN-SOURCE DEVELOPER</span><b>2022–NOW</b></p>
+  <p class="l it co"><span class="q"></span><span class="d">@ SELF · GITHUB.COM/FROSTMUTE</span><b></b></p>
+  <p class="l sub nc">Design, build, and maintain open-source developer tools and Obsidian plugins in TypeScript and JavaScript, including a Raindrop.io-to-Markdown bookmark/highlight importer (140+ GitHub stars) and an Are.na-to-vault content importer</p>
+  <p class="l sub nc">Architect a local-first, metadata-driven portfolio/blog framework, and a lightweight self-hosted personal knowledge base application</p>
+  <p class="l sub nc">Maintain a public GitHub presence (github.com/frostmute) covering plugin architecture, data import/sync pipelines, and front-end tooling</p>
+  <p class="l sub nc">Manage full project lifecycle independently: requirements, architecture, implementation, documentation, and community/user support for public releases</p>
+  <p class="l sub nc">Apply prior technical background (networking, systems, workflow optimization) to software design decisions around data structures, sync reliability, and cross-platform compatibility</p>
+  <p class="l hr" aria-hidden="true"></p>
+  <p class="l it"><span class="q" data-yrs="2021-now"></span><span class="d">VISUAL DESIGN, BRAND &amp; TECHNOLOGY CONSULTING</span><b>2021–NOW</b></p>
+  <p class="l it co"><span class="q"></span><span class="d">@ FREELANCE &amp; DEEPSPACEGHOST.COM</span><b></b></p>
+  <p class="l sub nc">Own and operate an independent design/apparel brand end-to-end: original artwork and print design, e-commerce storefront, POS operations, inventory, and visual merchandising</p>
+  <p class="l sub nc">Deliver freelance design and technical services to outside clients in parallel: brand systems, web design, motion graphics, and marketing assets, alongside network administration, troubleshooting, and documentation/process-optimization consulting</p>
+  <p class="l sub nc">Manage social media, content, and brand consistency across storefront and client channels</p>
+  <p class="l sub nc">Handle full customer-facing operations — sales, service, and support — across both retail and consulting work</p>
+  <p class="l sub nc">Apply the same open-source and web tooling used in software projects to build and maintain client-facing digital assets</p>
+  <p class="l hr" aria-hidden="true"></p>
+  <p class="l it"><span class="q" data-yrs="2013-2021"></span><span class="d">PRODUCTION MANAGER</span><b>2013–2021</b></p>
+  <p class="l it co"><span class="q"></span><span class="d">@ CELEBRATEEXCELLENCE.COM</span><b></b></p>
+  <p class="l sub nc">Led creative production team delivering high-detail visual designs for military and law-enforcement clients</p>
+  <p class="l sub nc">Produced bespoke artwork used by Google Data Centers, Cisco, The Ellen Show, San Antonio Spurs, San Antonio Rampage, City of San Antonio Tricentennial, Joint Base San Antonio, USAF Thunderbirds Showline Crew, and numerous USAF Command Chiefs, First Sergeants, and senior military leaders (via employer)</p>
+  <p class="l sub nc">Designed specialized insignia and regulated artwork for San Antonio Police Department, San Antonio Fire Department, Bexar County Sheriff&#x27;s Office, Police Chief William McManus, and Sheriff Javier Salazar</p>
+  <p class="l sub nc">Improved workflows and output efficiency; expanded e-commerce reach through SEO strategy</p>
+  <p class="l sub nc">Managed full product lifecycle from concept to delivery, ensuring quality and regulatory compliance</p>
+  <p class="l hr" aria-hidden="true"></p>
+  <p class="l it"><span class="q" data-yrs="2010-2013"></span><span class="d">TECHNICAL SUPPORT &amp; REPAIR TECHNICIAN</span><b>2010–2013</b></p>
+  <p class="l it co"><span class="q"></span><span class="d">@ 210GEEKS.COM</span><b></b></p>
+  <p class="l sub nc">Performed hands-on diagnostics and repair across desktops, laptops, and peripherals: hardware failures, component replacement, malware/virus removal, OS reinstalls, and data recovery/backup</p>
+  <p class="l sub nc">Refurbished used and trade-in systems for resale — testing, cleaning, upgrading components, and reimaging for retail sale</p>
+  <p class="l sub nc">Handled front-counter sales and customer intake: assessing issues, quoting repairs, upselling upgrades and accessories, and processing walk-in and phone transactions</p>
+  <p class="l sub nc">Provided on-site service calls for home and small-business clients, including network setup, Wi-Fi troubleshooting, and printer/peripheral configuration</p>
+  <p class="l sub nc">Built and configured custom PCs to customer specifications; set up new systems with software, drivers, and data migration from old machines</p>
+  <p class="l sub nc">Delivered remote and in-shop technical support, managing ticket queues and following up to ensure resolution and customer satisfaction</p>
+  <p class="l sub nc">Maintained shop inventory of parts and refurbished stock; sourced components for repairs and custom builds</p>
+  <p class="l sub nc">Reduced average repair turnaround time through improved intake documentation and repair-tracking workflow</p>
+  <p class="l dbl" aria-hidden="true"></p>
+  <p class="l r"><span>SUBTOTAL, ITEMIZED</span><b><i data-f="yrsum"></i> YRS</b></p>
+  <p class="l c dim tiny">CONCURRENT ROLES BILLED SEPARATELY</p>
+  <p class="l r big"><span>TOTAL YRS</span><b>20+</b></p>
+  <p class="l c dim">DESIGN, PRODUCTION, IT &amp; CODE · PER RÉSUMÉ</p>
+  <p class="l sp"></p>
+  <div class="l bar" data-code="0002"></div>
+  <p class="l sp"></p>
+</template>
+
+<template id="r-education">
+  <p class="l c big">EDUCATION</p>
+  <p class="l c dim">&amp; CERTIFICATIONS · NO. <i data-f="no"></i></p>
+  <p class="l dbl" aria-hidden="true"></p>
+  <p class="l it"><span class="q">1</span><span class="d">MAESTRO COLLEGE</span><b>IN PROG.</b></p>
+  <p class="l it co"><span class="q"></span><span class="d">AAS, ARTIFICIAL INTELLIGENCE SOFTWARE DEVELOPMENT</span><b></b></p>
+  <p class="l sub nc">In progress, full-time</p>
+  <p class="l sub nc">Coursework: Machine Learning Fundamentals, Python Programming, AI Systems Architecture, Data Structures, Algorithms</p>
+  <p class="l sub nc">Goal: MBA in Computer Science</p>
+  <p class="l sp half"></p>
+  <p class="l it"><span class="q">1</span><span class="d">CLIMBHIRE IT SUPPORT PROGRAM</span><b>2024</b></p>
+  <p class="l it co"><span class="q"></span><span class="d">COMPTIA A+ · GOOGLE IT SUPPORT PROFESSIONAL</span><b></b></p>
+  <p class="l sp half"></p>
+  <p class="l it"><span class="q">1</span><span class="d">APPBREWERY WEB DEVELOPMENT BOOTCAMP</span><b>CERT.</b></p>
+  <p class="l it co"><span class="q"></span><span class="d">WEB DEVELOPMENT CERTIFICATE</span><b></b></p>
+  <p class="l sp half"></p>
+  <p class="l it"><span class="q">1</span><span class="d">ADOBE CERTIFIED PROFESSIONAL</span><b>CERT.</b></p>
+  <p class="l it co"><span class="q"></span><span class="d">PHOTOSHOP · ILLUSTRATOR</span><b></b></p>
+  <p class="l sp half"></p>
+  <p class="l hr" aria-hidden="true"></p>
+  <p class="l r"><span>CREDENTIALS</span><b>4 LINES</b></p>
+  <p class="l r big"><span>STATUS</span><b>LEARNING</b></p>
+  <p class="l c dim">CURRENTLY ENROLLED FULL-TIME</p>
+  <p class="l sp"></p>
+  <div class="l bar" data-code="0003"></div>
+  <p class="l sp"></p>
+</template>
+
+<template id="r-skills">
+  <p class="l c big">SKILLS</p>
+  <p class="l c dim">FRESH, LOCAL, ITEMIZED · NO. <i data-f="no"></i></p>
+  <p class="l dbl" aria-hidden="true"></p>
+  <p class="l r dept"><span>DEPT 01 · AI &amp; TECHNICAL</span><b>15</b></p>
+  <p class="l sk"><i>101</i>AI TRAINING</p>
+  <p class="l sk"><i>102</i>DATA ANNOTATION</p>
+  <p class="l sk"><i>103</i>MODEL EVALUATION</p>
+  <p class="l sk"><i>104</i>PYTHON</p>
+  <p class="l sk"><i>105</i>OPEN-SOURCE TOOLS</p>
+  <p class="l sk"><i>106</i>WINDOWS</p>
+  <p class="l sk"><i>107</i>LINUX</p>
+  <p class="l sk"><i>108</i>HARDWARE REPAIR</p>
+  <p class="l sk"><i>109</i>NETWORK TROUBLESHOOTING</p>
+  <p class="l sk"><i>110</i>ACTIVE DIRECTORY</p>
+  <p class="l sk"><i>111</i>HELP DESK SYSTEMS</p>
+  <p class="l sk"><i>112</i>VIRTUALIZATION</p>
+  <p class="l sk"><i>113</i>REMOTE SUPPORT</p>
+  <p class="l sk"><i>114</i>DOCUMENTATION</p>
+  <p class="l sk"><i>115</i>WORKFLOW OPTIMIZATION</p>
+  <p class="l sp half"></p>
+  <p class="l r dept"><span>DEPT 02 · DEVELOPMENT</span><b>9</b></p>
+  <p class="l sk"><i>201</i>GIT</p>
+  <p class="l sk"><i>202</i>GITHUB</p>
+  <p class="l sk"><i>203</i>VS CODE</p>
+  <p class="l sk"><i>204</i>NODE.JS</p>
+  <p class="l sk"><i>205</i>NPM / YARN</p>
+  <p class="l sk"><i>206</i>TYPESCRIPT</p>
+  <p class="l sk"><i>207</i>JAVASCRIPT</p>
+  <p class="l sk"><i>208</i>OBSIDIAN PLUGIN API</p>
+  <p class="l sk"><i>209</i>MARKDOWN</p>
+  <p class="l sp half"></p>
+  <p class="l r dept"><span>DEPT 03 · CREATIVE &amp; DIGITAL</span><b>13</b></p>
+  <p class="l sk"><i>301</i>VISUAL DESIGN</p>
+  <p class="l sk"><i>302</i>ART DIRECTION</p>
+  <p class="l sk"><i>303</i>ADOBE PHOTOSHOP</p>
+  <p class="l sk"><i>304</i>ADOBE ILLUSTRATOR</p>
+  <p class="l sk"><i>305</i>PREMIERE PRO</p>
+  <p class="l sk"><i>306</i>AFTER EFFECTS</p>
+  <p class="l sk"><i>307</i>CORELDRAW</p>
+  <p class="l sk"><i>308</i>MOTION GRAPHICS</p>
+  <p class="l sk"><i>309</i>VIDEO EDITING</p>
+  <p class="l sk"><i>310</i>TYPOGRAPHY</p>
+  <p class="l sk"><i>311</i>WEB DESIGN</p>
+  <p class="l sk"><i>312</i>BRAND DEVELOPMENT</p>
+  <p class="l sk"><i>313</i>SOCIAL MEDIA MANAGEMENT</p>
+  <p class="l sp half"></p>
+  <p class="l r dept"><span>DEPT 04 · PROFESSIONAL</span><b>6</b></p>
+  <p class="l sk"><i>401</i>CUSTOMER COMMUNICATION</p>
+  <p class="l sk"><i>402</i>TEAM LEADERSHIP</p>
+  <p class="l sk"><i>403</i>PROCESS IMPROVEMENT</p>
+  <p class="l sk"><i>404</i>TIME MANAGEMENT</p>
+  <p class="l sk"><i>405</i>RESEARCH</p>
+  <p class="l sk"><i>406</i>COLLABORATION</p>
+  <p class="l sp half"></p>
+  <p class="l r dept"><span>DEPT 05 · GITHUB LANGUAGES</span><b>REPOS</b></p>
+  <div class="l langs" data-f="langs"></div>
+  <p class="l c dim tiny">BY ORIGINAL PUBLIC REPO · <span data-f="ghsrc"></span></p>
+  <p class="l hr" aria-hidden="true"></p>
+  <p class="l r"><span>ITEMS SOLD</span><b>43</b></p>
+  <p class="l r big"><span>TOTAL</span><b>ALL OF IT</b></p>
+  <p class="l c dim">NO SUBSTITUTIONS. ONE PERSON, BOTH SIDES OF THE BRAIN.</p>
+  <p class="l sp"></p>
+  <div class="l bar" data-code="0004"></div>
+  <p class="l sp"></p>
+</template>
+
+<template id="r-terms">
+  <p class="l c big">TERMS &amp;</p>
+  <p class="l c big">CONDITIONS</p>
+  <p class="l c dim">OF WORKING WITH JONATHAN · NO. <i data-f="no"></i></p>
+  <p class="l dbl" aria-hidden="true"></p>
+  <p class="l xl tight">BUILT<br>IN THE<br>OPEN.</p>
+  <p class="l hr" aria-hidden="true"></p>
+  <p class="l">AN ITEMIZED LIST OF HOW HE WORKS, READ OFF THE RÉSUMÉ AND THE REPOS. KEEP FOR YOUR RECORDS.</p>
+  <p class="l sp"></p>
+  <p class="l it"><span class="q">01</span><span class="d">OPEN SOURCE BY DEFAULT</span><b>INCL.</b></p>
+  <p class="l sub nc">Public repos, real documentation, and support for the people who use the releases.</p>
+  <p class="l it"><span class="q">02</span><span class="d">LOCAL-FIRST WHERE IT FITS</span><b>INCL.</b></p>
+  <p class="l sub nc">Notes, files and data that live with their owner: a local-first framework and a self-hosted knowledge base, both public.</p>
+  <p class="l it"><span class="q">03</span><span class="d">DESIGNER + ENGINEER, ONE ITEM</span><b>INCL.</b></p>
+  <p class="l sub nc">Two decades of visual design behind the code, and a systems background behind the design.</p>
+  <p class="l it"><span class="q">04</span><span class="d">FULL LIFECYCLE INCLUDED</span><b>INCL.</b></p>
+  <p class="l sub nc">Requirements, architecture, implementation, documentation, then support.</p>
+  <p class="l it"><span class="q">05</span><span class="d">SYNC SHOULD NOT LOSE YOUR STUFF</span><b>INCL.</b></p>
+  <p class="l sub nc">Import and sync pipelines are designed around data structures, reliability and cross-platform behavior.</p>
+  <p class="l it"><span class="q">06</span><span class="d">CUSTOMER-FACING SINCE 2010</span><b>INCL.</b></p>
+  <p class="l sub nc">Front counter, service calls, storefront, clients. Plain words over jargon.</p>
+  <p class="l it"><span class="q">07</span><span class="d">STILL LEARNING</span><b>INCL.</b></p>
+  <p class="l sub nc">Enrolled full-time in an AAS in Artificial Intelligence Software Development.</p>
+  <p class="l it strike"><span class="q">08</span><span class="d">SKIMMING THIS RECEIPT</span><b>VOID</b></p>
+  <p class="l hr" aria-hidden="true"></p>
+  <p class="l r"><span>TERMS</span><b>7</b></p>
+  <p class="l r big"><span>BALANCE</span><b>LET'S TALK</b></p>
+  <p class="l sp"></p>
+  <p class="l c dim">AUTHORIZED SIGNATURE</p>
+  <p class="l sig" aria-hidden="true"><svg viewBox="0 0 300 48" preserveAspectRatio="none"><path d="M10 34c10-22 22-28 20-8-1 12 8-14 18-14 9 0-6 22 6 20s14-22 26-20c10 2-8 20 4 18s16-16 28-14c8 1-2 16 10 14 14-2 26-22 38-18 8 3-6 14 6 13 12-1 28-12 60-8" fill="none" stroke="#1b1a18" stroke-width="2" stroke-linecap="round"/></svg></p>
+  <p class="l hr" aria-hidden="true"></p>
+  <p class="l c tiny">CUSTOMER COPY · DO NOT FOLD, SPINDLE OR SKIM</p>
+  <p class="l sp"></p>
+  <div class="l bar" data-code="0006"></div>
+  <p class="l sp"></p>
+</template>
+
+<template id="r-note">
+  <p class="l c big">LEAVE A NOTE</p>
+  <p class="l c dim">FOR JONATHAN · NO. <i data-f="no"></i></p>
+  <p class="l dbl" aria-hidden="true"></p>
+  <p class="l">TYPE A MESSAGE. THE PRINTER PRINTS IT, THEN YOU CAN SEND IT STRAIGHT TO HIS INBOX.</p>
+  <p class="l sp"></p>
+  <form class="l noteform" id="noteform" autocomplete="off">
+    <label for="note" class="sr">Your message to Jonathan</label>
+    <textarea id="note" name="note" maxlength="600" rows="3" placeholder="HI JONATHAN, _"></textarea>
+    <button type="submit">PRINT IT</button>
+  </form>
+  <p class="l sp"></p>
+  <p class="l inv c">OR REACH HIM DIRECTLY</p>
+  <p class="l sp half"></p>
+  <p class="l lk"><span>EMAIL</span><a href="mailto:jonathanjameswagner@proton.me">jonathanjameswagner@proton.me</a></p>
+  <p class="l lk"><span>LINKEDIN</span><a href="https://www.linkedin.com/in/jonathanjwagner" target=_blank rel=noopener>linkedin.com/in/jonathanjwagner</a></p>
+  <p class="l lk"><span>GITHUB</span><a href="https://github.com/frostmute" target=_blank rel=noopener>github.com/frostmute</a></p>
+  <p class="l lk"><span>PORTFOLIO</span><a href="https://jonathanjwagner.netlify.app" target=_blank rel=noopener>jonathanjwagner.netlify.app</a></p>
+  <div class="l qrs"><a class="qr" href="mailto:jonathanjameswagner@proton.me"><img src="img/qr-email.svg" alt="QR code for email: jonathanjameswagner@proton.me" width="33" height="33"><span>EMAIL</span></a><a class="qr" href="https://www.linkedin.com/in/jonathanjwagner" target=_blank rel=noopener><img src="img/qr-linkedin.svg" alt="QR code for linkedin: linkedin.com/in/jonathanjwagner" width="33" height="33"><span>LINKEDIN</span></a><a class="qr" href="https://github.com/frostmute" target=_blank rel=noopener><img src="img/qr-github.svg" alt="QR code for github: github.com/frostmute" width="33" height="33"><span>GITHUB</span></a><a class="qr" href="https://jonathanjwagner.netlify.app" target=_blank rel=noopener><img src="img/qr-portfolio.svg" alt="QR code for portfolio: jonathanjwagner.netlify.app" width="33" height="33"><span>PORTFOLIO</span></a></div>
+  <p class="l c dim tiny">SCAN OR TAP · SAN ANTONIO, TX</p>
+  <p class="l sp"></p>
+  <div class="l bar" data-code="0007"></div>
+  <p class="l sp"></p>
+</template>
+<template id="r-yours">
+  <p class="l c dim">MESSAGE PRINTED <i data-f="time"></i> · NO. <i data-f="no"></i></p>
+  <p class="l dbl" aria-hidden="true"></p>
+  <p class="l msg nc" data-f="msg"></p>
+  <p class="l dbl" aria-hidden="true"></p>
+  <p class="l r"><span>TO</span><b>JONATHAN J. WAGNER</b></p>
+  <p class="l r"><span>VIA</span><b>YOUR EMAIL APP</b></p>
+  <p class="l sp"></p>
+  <div class="l btns"><a class="pbtn send" data-f="mailto" href="mailto:jonathanjameswagner@proton.me">SEND TO HIS INBOX &rarr;</a></div>
+  <p class="l c dim tiny">OPENS YOUR MAIL APP WITH THIS NOTE FILLED IN.</p>
+  <p class="l c dim tiny">NOTHING IS SENT UNTIL YOU PRESS SEND THERE.</p>
+  <p class="l sp"></p>
+  <p class="l c">TEAR TO KEEP GOING.</p>
+  <p class="l sp"></p>
+</template>
+
+<template id="r-end">
+  <p class="l c big">END OF ROLL</p>
+  <p class="l c dim">NO. <i data-f="no"></i> · LAST ONE</p>
+  <p class="l dbl" aria-hidden="true"></p>
+  <p class="l">YOU HAVE REACHED THE PINK STRIPE. ON A REAL PRINTER IT MEANS THE PAPER IS ABOUT TO RUN OUT. HERE IT MEANS THE PLAIN VERSION IS ONE TEAR AWAY.</p>
+  <p class="l sp"></p>
+  <p class="l r"><span>RECEIPTS ON THIS ROLL</span><b data-f="count"></b></p>
+  <p class="l r"><span>PAPER USED</span><b data-f="paper"></b></p>
+  <p class="l r"><span>TIME ON SITE</span><b data-f="dur"></b></p>
+  <p class="l hr" aria-hidden="true"></p>
+  <p class="l c">THANK YOU FOR SHOPPING AT</p>
+  <p class="l c xl name">JONATHAN<br>J. WAGNER</p>
+  <p class="l c dim">CREATIVE DESIGNER + TECHNOLOGIST</p>
+  <p class="l sp"></p>
+  <div class="l btns"><a class="pbtn" href="resume.pdf" download="Jonathan-Wagner-Resume.pdf">DOWNLOAD THE PDF</a><a class="pbtn ghostbtn" href="mailto:jonathanjameswagner@proton.me">EMAIL HIM</a></div>
+  <p class="l sp"></p>
+  <p class="l tearline c onlyroll">- - - TEAR HERE FOR PDF - - -</p>
+  <p class="l c dim tiny onlyroll">TEARING THIS ONE SAVES THE PLAIN RÉSUMÉ, THEN LOADS A NEW ROLL</p>
+  <p class="l sp"></p>
+  <div class="l bar" data-code="0009"></div>
+  <p class="l sp"></p>
+</template>
+
+<script src="data.js"></script>
+<script src="script.js" defer></script>
+</body>
+</html>
